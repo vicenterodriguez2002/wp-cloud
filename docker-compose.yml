@@ -1,0 +1,29 @@
+services:
+  db:
+    image: mariadb:11
+    environment:
+      - MYSQL_ROOT_PASSWORD=1234567vrc
+      - MYSQL_DATABASE=wordpressvrc
+      - MYSQL_USER=wordpressvrc
+      - MYSQL_PASSWORD=1234567vrc
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: on-failure
+  wordpress:
+    image: wordpress:6-apache
+    depends_on:
+      - db
+    ports:
+      - "8082:80"
+    environment:
+      - WORDPRESS_DB_HOST=db
+      - WORDPRESS_DB_USER=wordpressvrc
+      - WORDPRESS_DB_PASSWORD=1234567vrc
+      - WORDPRESS_DB_NAME=wordpressvrc
+      
+    volumes:
+      - wordpress_data:/var/www/html
+    restart: always
+volumes:
+  db_data:
+  wordpress_data:
