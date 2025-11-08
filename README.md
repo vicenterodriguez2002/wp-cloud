@@ -30,7 +30,7 @@ services:  ## iniciamos servicios
     volumes: # tendremos un volumen para wordpress
       - wordpress_data:/var/www/html
     restart: always  # y tendra un reinicio que se reinicia siempre
-volumes: # el volumen de los tanto de base de datos como de worpress
+volumes: # el volumen  tanto de base de datos como de worpress
   db_data:
   wordpress_data:
 
